@@ -2,18 +2,21 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+// CORS ayarları
 app.use(cors({
-  origin: 'https://[GITHUB_USERNAME].github.io'
+  origin: 'https://celalkilnc.github.io'
 }));
 
-// Gizli video URL'si
-const VIDEO_ID = "1wa4h6reZ0-3a_QHut_ooUqN23k9Q4xWE";
+// Gizli video bilgileri
+const VIDEO_ID = "1lx8lx2whytW074tTZfPnh0RlD_fVI1CO";
 const VIDEO_URL = `https://drive.google.com/file/d/${VIDEO_ID}/preview`;
 
-app.get('/video-proxy', (req, res) => {
+// Proxy endpoint
+app.get('/secure-video', (req, res) => {
   res.redirect(VIDEO_URL);
 });
 
-app.listen(5000, () => {
-  console.log('Server running on port 5000');
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 }); 
